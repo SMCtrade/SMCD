@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 221 39% 11%;
+    --foreground: 0 0% 100%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 262 100% 71%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 120 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 215 27.9% 16.9%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 27.9% 16.9%;
+    --sidebar-ring: 120 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Press Start 2P", monospace;
+    background-image:
+      linear-gradient(rgba(128, 128, 128, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(128, 128, 128, 0.3) 1px, transparent 1px);
+    background-size: 16px 16px;
+    background-position:
+      0 0,
+      0 0;
+  }
+}
