@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Cabinet</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Personal Cabinet</h1>
+  <p>Welcome, <span id="user"></span></p>
+  <button onclick="logout()">Logout</button>
+  <script>
+    const u = requireAuth();
+    document.getElementById('user').textContent = u;
+  </script>
+</body>
+</html>

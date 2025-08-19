@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Register</h1>
+  <form id="registerForm">
+    <input id="regUsername" placeholder="Username" required>
+    <input id="regPassword" type="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+  </form>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const u = document.getElementById('regUsername').value;
+      const p = document.getElementById('regPassword').value;
+      if(register(u,p)){
+        alert('Registered! Please login.');
+        location.href = 'login.html';
+      } else {
+        alert('User already exists');
+      }
+    });
+  </script>
+</body>
+</html>

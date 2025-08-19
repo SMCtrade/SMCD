@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="loginForm">
+    <input id="loginUsername" placeholder="Username" required>
+    <input id="loginPassword" type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+  <div id="oauthButtons">
+    <div id="g_id_onload" data-client_id="GOOGLE_CLIENT_ID" data-callback="handleGoogleCredential"></div>
+    <div class="g_id_signin" data-type="standard"></div>
+    <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
+  </div>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!login(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value)){
+        alert('Invalid credentials');
+      }
+    });
+    function handleGoogleCredential(res){
+      const data = parseJwt(res.credential);
+      loginWithOAuth(data.email, 'google');
+    }
+    AppleID.auth.init({
+      clientId: 'APPLE_CLIENT_ID',
+      scope: 'name email',
+      redirectURI: location.href,
+      usePopup: true,
+    });
+    document.getElementById('appleid-signin').addEventListener('click', () => {
+      AppleID.auth.signIn().then(res => {
+        const email = res.user?.email || parseJwt(res.authorization.id_token).email;
+        loginWithOAuth(email, 'apple');
+      }).catch(console.error);
+    });
+  </script>
+</body>
+</html>
